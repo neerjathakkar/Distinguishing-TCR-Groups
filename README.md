@@ -1,6 +1,12 @@
-## Code for Balancing sensitivity and specificity in distinguishing TCR groups by CDR sequence similarity ### General notes and dependencies
+## Code for Balancing sensitivity and specificity in distinguishing TCR groups by CDR sequence similarity 
+
+Link to preprint: https://www.biorxiv.org/content/10.1101/526467v1
+
+### General notes and dependencies
 - All of the code is run using python 2.7
-- You will need the [swalign package](https://pypi.python.org/pypi/swalign), which can be acquired with `pip install swalign` ### Data pre-processing
+- You will need the [swalign package](https://pypi.python.org/pypi/swalign), which can be acquired with `pip install swalign` 
+
+### Data pre-processing
 - All data pre-processing scripts are in the directory data_preprocessing, which has further instructions on how to acquire and process the data
 - Once you run the data pre-processing scripts, you will need to produce the outputs in a data directory and know the full path to the directory. Our example of this directory is called `datasets/`
 - Some of the data (ex. McPAS) does not need to be pre-processed, and the script to generate results is called directly on the data

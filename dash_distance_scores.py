@@ -85,10 +85,13 @@ log_file.write(str(lowest[0]))
 log_file.write("\ncreating motif...")
 create_motif(lowest[1], "least_specific" + "_" + str(epitope), output_dir)
 log_file.write("\ngetting cluster progression of motif...")
-cluster_progression(output_dir + epitope + "_least_specific_", clusters2, clusters3, clusters4, clust = lowest[1])
+clustersprog = cluster_progression(output_dir + epitope + "_least_specific_", clusters2, clusters3, clusters4, clust = lowest[1])
 log_file.write("\ncreating pair motif...")
 create_motif(lowest[3], "least_specific_pair" + "_" + str(epitope), output_dir)
 
+score_progression = score_repertoire(clustersprog, other_clusters)
+for data in score_progression:
+    log_file.write(str(data))
 
 log_file.write("\nhighest scoring and therefore most specific to this repertoire:")
 highest = scores[-1]
@@ -109,9 +112,13 @@ log_file.write(str(highest[0]))
 log_file.write("\ncreating motif...")
 create_motif(highest[1], "most_specific" + "_" + str(epitope), output_dir)
 log_file.write("\ngetting cluster progression of motif...")
-cluster_progression(output_dir + epitope + "_most_specific_", clusters2, clusters3, clusters4, clust = highest[1])
+clustersprog = cluster_progression(output_dir + epitope + "_most_specific_", clusters2, clusters3, clusters4, clust = highest[1])
 log_file.write("\ncreating pair motif...")
 create_motif(highest[3], "most_specific_pair" + "_" + str(epitope), output_dir)
+
+score_progression = score_repertoire(clustersprog, other_clusters)
+for data in score_progression:
+    log_file.write(str(data))
 
 log_file.close()
 

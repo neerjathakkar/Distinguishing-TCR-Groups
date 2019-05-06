@@ -82,7 +82,14 @@ def create_motif_from_fasta_file(fasta_filename, out_filename, generate_pssm=Fal
             instances.append(Seq(seq, IUPAC.protein))
 
     m = motifs.create(instances, IUPAC.protein)
-    m.weblogo(out_filename, format='svg')
+    m.weblogo(out_filename,
+            show_xaxis=False,
+            show_yaxis=False,
+            show_errorbars=False,
+            unit_name='',
+            show_fineprint=False,
+            format='pdf')
+
 
     if generate_pssm:
         pssm_file = open(out_filename[:-10] + "_pssm.txt", "w+")
@@ -117,7 +124,7 @@ def generate_motifs(clusters, file_path, clust_size=None):
                 i += 1
             f.close()
 
-            create_motif_from_fasta_file(file_name, file_name[:-4] + "_motif.svg")
+            create_motif_from_fasta_file(file_name, file_name[:-4] + "_motif.pdf")
 
 def generate_motif_from_cluster(key, cluster, file_path, clust_size=None):
     clusters = {key: cluster}
@@ -160,6 +167,8 @@ def cluster_progression(out_dir, clusters2, clusters3, clusters4, n=None, clust=
                         motif_names.append(out_dir + motif_name + "_pssm.txt")
 
                         break
+
+                return([clust, clusters3[j], clusters4[i]])
 
     else:
         f = open(out_dir + "cluster_progression_results.txt", "w")
